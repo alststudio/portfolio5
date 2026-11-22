@@ -759,16 +759,16 @@ function syncSearch(){
   $$('#guestPop .g-btn[data-d="-1"]').forEach(b=>b.disabled=state[b.dataset.g]<=0);
   renderCal();
 }
-function openPop(which){
+function openPop(which,field){
   calPop.classList.toggle('open',which==='cal');
   guestPop.classList.toggle('open',which==='guest');
-  $('#fIn').classList.toggle('active',which==='cal');
-  $('#fOut').classList.toggle('active',false);
+  $('#fIn').classList.toggle('active',field==='fIn');
+  $('#fOut').classList.toggle('active',field==='fOut');
   $('#fGuest').classList.toggle('active',which==='guest');
 }
 function closePops(){calPop.classList.remove('open');guestPop.classList.remove('open')}
-$('#fIn').addEventListener('click',e=>{e.stopPropagation();openPop('cal')});
-$('#fOut').addEventListener('click',e=>{e.stopPropagation();openPop('cal')});
+$('#fIn').addEventListener('click',e=>{e.stopPropagation();openPop('cal','fIn')});
+$('#fOut').addEventListener('click',e=>{e.stopPropagation();openPop('cal','fOut')});
 $('#fGuest').addEventListener('click',e=>{e.stopPropagation();openPop('guest')});
 $('#search').addEventListener('click',e=>e.stopPropagation());
 document.addEventListener('click',closePops);
@@ -813,7 +813,8 @@ function openDetail(i,cardEl){
   const wasOpen=detailOpen;
   detail.classList.add('open'); detail.setAttribute('aria-hidden','false');
   detailOpen=true; document.body.style.overflow='hidden'; onScroll();
-  if(!wasOpen)detail.scrollTop=0;
+  if(wasOpen){detail.scrollTo({top:0,behavior:'smooth'});return}
+  detail.scrollTop=0;
   /* shared-element flight */
   const from=cardEl.querySelector('.ph').getBoundingClientRect();
   const target=detail.querySelector('.d-main');
