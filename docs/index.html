@@ -189,12 +189,12 @@ body.loaded #search{animation:searchIn 1s var(--out) .15s forwards}
 
 /* popovers */
 .pop{
-  position:absolute;left:0;top:calc(100% + 12px);background:#fff;border-radius:18px;
+  position:absolute;left:0;bottom:calc(100% + 12px);top:auto;background:#fff;border-radius:18px;
   box-shadow:0 30px 70px rgba(120,70,60,.25);padding:22px;z-index:30;
-  opacity:0;transform:translateY(-8px);pointer-events:none;transition:opacity .35s var(--out),transform .35s var(--out);
+  opacity:0;transform:translateY(8px);pointer-events:none;transition:opacity .35s var(--out),transform .35s var(--out);
 }
 .pop.open{opacity:1;transform:translateY(0);pointer-events:auto}
-#calPop{width:340px}
+#calPop{width:340px;max-height:min(430px,calc(100vh - 190px));overflow-y:auto}
 #calPop .cal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
 #calPop .cal-head b{font-size:16.5px;font-weight:600}
 .cal-nav{width:30px;height:30px;border-radius:50%;border:1.4px solid rgba(29,26,28,.16);display:flex;align-items:center;justify-content:center;font-size:16px;transition:background-color .25s,color .25s}
@@ -206,7 +206,7 @@ body.loaded #search{animation:searchIn 1s var(--out) .15s forwards}
 .day.dis{opacity:.28;pointer-events:none}
 .day.range{background:#fbe7da;border-radius:0}
 .day.sel{background:#141013;color:#fff;border-radius:9px;z-index:1}
-#guestPop{width:300px;right:0;left:auto}
+#guestPop{width:300px;right:0;left:auto;max-height:calc(100vh - 190px);overflow-y:auto}
 .g-row{display:flex;align-items:center;justify-content:space-between;padding:13px 2px}
 .g-row + .g-row{border-top:1px solid rgba(29,26,28,.07)}
 .g-row b{font-size:15.5px;font-weight:600;display:block}
