@@ -301,11 +301,72 @@ body.loaded #search{animation:searchIn 1s var(--out) .15s forwards}
 #simGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(14px,2.2vw,30px)}
 #flight{position:fixed;z-index:600;object-fit:cover;pointer-events:none;display:none;box-shadow:0 30px 70px rgba(60,30,30,.35)}
 
+/* ============ JELAJAHI ============ */
+#jelajahi{position:relative;z-index:5;padding:6px clamp(20px,9.5vw,170px) 100px;scroll-margin-top:84px}
+#destGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(14px,2.2vw,30px)}
+.dcard{
+  position:relative;aspect-ratio:4/3;border-radius:12px;overflow:hidden;background:#cbb3a4;
+  box-shadow:0 12px 30px rgba(110,60,50,.16);
+  opacity:0;transform:translateY(40px);
+  transition:opacity .9s var(--out),transform .9s var(--out),box-shadow .5s ease;
+}
+.dcard.in{opacity:1;transform:translateY(0)}
+.dcard.in:hover{transform:translateY(-6px);box-shadow:0 26px 48px rgba(110,60,50,.28)}
+.dcard .ph{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--out)}
+.dcard:hover .ph{transform:scale(1.07)}
+.dcard .shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,10,10,.08) 38%,rgba(20,10,10,.30) 66%,rgba(15,8,8,.66) 100%)}
+.dcard .info{position:absolute;left:16px;right:16px;bottom:14px;color:#fff;z-index:2}
+.dcard .info h3{font-family:'Gilda Display',serif;font-weight:400;font-size:22px;line-height:1.15;text-shadow:0 1px 8px rgba(0,0,0,.3)}
+.dcard .area{display:flex;align-items:center;gap:5px;font-size:12.5px;opacity:.92;margin-top:5px}
+.dcard .area svg{width:11px;height:11px;fill:#fff;flex:none}
+.dcard .desc{font-size:12.5px;line-height:1.5;opacity:.94;margin-top:6px;text-shadow:0 1px 6px rgba(0,0,0,.35)}
+
+/* ============ KONTAK ============ */
+#kontak{position:fixed;inset:0;background:#fff;z-index:400;overflow-y:auto;opacity:0;pointer-events:none;transition:opacity .55s ease}
+#kontak.open{opacity:1;pointer-events:auto}
+#kontak .band{height:290px;background:linear-gradient(180deg,#f7d9c6,#fbe7da);position:absolute;top:0;left:0;right:0}
+#kontak .k-wrap{position:relative;padding:118px clamp(20px,9.5vw,170px) 90px}
+#kontak.open .rise{animation:riseIn .8s var(--out) forwards;animation-delay:calc(.25s + var(--i)*.07s)}
+.k-title{font-family:'Gilda Display',serif;font-weight:400;font-size:clamp(34px,4vw,46px);line-height:1.1}
+.k-intro{margin-top:12px;font-size:15.5px;line-height:1.7;color:var(--ink2);max-width:560px}
+.k-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:36px;max-width:1020px}
+.k-card{background:#fff;border-radius:16px;box-shadow:0 16px 40px rgba(120,70,60,.13);padding:22px}
+.k-card svg{width:24px;height:24px;stroke:var(--ink);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.k-card h3{font-size:16px;font-weight:600;margin-top:14px}
+.k-card p{font-size:14px;color:var(--ink2);margin-top:5px;line-height:1.6}
+.k-hours{margin-top:22px;font-size:14px;color:var(--ink2)}
+.k-form{margin-top:44px;max-width:640px}
+.k-form-title{font-family:'Gilda Display',serif;font-weight:400;font-size:24px;margin-bottom:18px}
+.k-field{margin-bottom:16px}
+.k-field label{display:block;font-size:12px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);margin-bottom:7px}
+.k-field input,.k-field textarea{width:100%;font-family:inherit;font-size:15px;color:var(--ink);background:#f6f1ee;border:1.5px solid transparent;border-radius:12px;padding:13px 16px;outline:none;resize:vertical;transition:border-color .25s ease,background-color .25s ease}
+.k-field input:focus,.k-field textarea:focus{border-color:var(--orange);background:#fff}
+.k-err{display:none;color:#d92c3d;font-size:13.5px;font-weight:500;margin:0 0 12px}
+.k-err.show{display:block}
+#kfBtn{background:var(--orange);color:#fff;font-size:15.5px;font-weight:600;border-radius:999px;padding:14px 34px;transition:background-color .4s ease,transform .3s var(--out)}
+#kfBtn:hover:not(:disabled){transform:scale(1.03)}
+#kfBtn.done{background:#2e9e5b}
+#kfBtn:disabled{opacity:.85}
+.host-block{margin-top:56px;max-width:1020px;background:linear-gradient(120deg,#f7d9c6,#fbe7da);border-radius:18px;padding:30px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.host-block h3{font-family:'Gilda Display',serif;font-weight:400;font-size:24px;line-height:1.2}
+.host-block p{color:var(--ink2);font-size:14.5px;margin-top:6px;line-height:1.6;max-width:520px}
+#hostBtn{flex:none;background:var(--ink);color:#fff;border-radius:999px;padding:13px 26px;font-size:14.5px;font-weight:600;transition:transform .3s var(--out)}
+#hostBtn:hover{transform:scale(1.04)}
+
+/* ============ FOOTER ============ */
+#footer{position:relative;z-index:5;padding:42px clamp(20px,9.5vw,170px) 52px;border-top:1px solid rgba(29,26,28,.1);display:flex;align-items:center;justify-content:space-between;gap:20px 30px;flex-wrap:wrap}
+.f-links{display:flex;gap:30px;flex-wrap:wrap}
+.f-links a{font-size:14.5px;font-weight:500;position:relative;padding:4px 0}
+.f-links a::after{content:"";position:absolute;left:0;bottom:0;height:1.5px;width:100%;background:currentColor;transform:scaleX(0);transform-origin:right;transition:transform .45s var(--ease)}
+.f-links a:hover::after{transform:scaleX(1);transform-origin:left}
+.f-copy{font-size:13.5px;color:var(--ink2)}
+
 /* ============ RESPONSIVE ============ */
 @media (max-width:1000px){
   .nav-mid,.host-link{display:none}
   #grid{grid-template-columns:repeat(2,1fr)}
   #simGrid{grid-template-columns:repeat(2,1fr)}
+  #destGrid{grid-template-columns:repeat(2,1fr)}
   .d-cols{grid-template-columns:1fr}
 }
 @media (max-width:640px){
@@ -322,6 +383,10 @@ body.loaded #search{animation:searchIn 1s var(--out) .15s forwards}
   #sendBtn{width:100%;margin:8px 0 2px;height:44px;border-radius:12px}
   #calPop{width:min(340px,calc(100vw - 40px))}
   #stays{margin-top:-8vh}
+  #destGrid{grid-template-columns:1fr}
+  .k-cards{grid-template-columns:1fr}
+  #kontak .k-wrap{padding-top:100px}
+  .host-block{padding:24px}
   .amen-grid{grid-template-columns:repeat(2,1fr)}
   .d-right h1{font-size:31px}
 }
@@ -341,12 +406,12 @@ body.loaded #search{animation:searchIn 1s var(--out) .15s forwards}
     </div>
   </div>
   <nav class="nav-mid">
-    <a href="#stays">Penginapan</a>
-    <a href="#stays">Jelajahi Bali</a>
-    <a href="#stays">Hubungi Kami</a>
+    <a href="#stays" id="navStays">Penginapan</a>
+    <a href="#jelajahi" id="navJelajahi">Jelajahi Bali</a>
+    <a href="#kontak" id="navKontak">Hubungi Kami</a>
   </nav>
   <div class="nav-right">
-    <a class="host-link" href="#stays">Jadi Host</a>
+    <a class="host-link" href="#kontak" id="navHost">Jadi Host</a>
     <button class="globe-btn" aria-label="Bahasa">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="12" cy="12" r="9.2"/><path d="M2.8 12h18.4M12 2.8c2.6 2.5 3.9 5.6 3.9 9.2s-1.3 6.7-3.9 9.2c-2.6-2.5-3.9-5.6-3.9-9.2s1.3-6.7 3.9-9.2z"/></svg>
     </button>
@@ -454,6 +519,80 @@ body.loaded #search{animation:searchIn 1s var(--out) .15s forwards}
   <div id="grid"></div>
 </main>
 
+<!-- ================= JELAJAHI ================= -->
+<section id="jelajahi">
+  <div class="stays-head">
+    <h2>Jelajahi Bali</h2>
+  </div>
+  <div id="destGrid">
+    <article class="dcard">
+      <img class="ph" src="https://www.mumonthemove.com/wp-content/uploads/2025/05/bali-tanah-lot-temple.jpg" alt="Pura Tanah Lot saat matahari terbenam" loading="lazy">
+      <div class="shade"></div>
+      <div class="info">
+        <h3>Tanah Lot</h3>
+        <div class="area"><svg viewBox="0 0 24 24"><path d="M12 21s-6.5-5.4-6.5-10.4a6.5 6.5 0 1 1 13 0C18.5 15.6 12 21 12 21z"/></svg><span>Tabanan</span></div>
+        <p class="desc">Pura di atas batu karang di tengah laut, paling dramatis saat matahari terbenam.</p>
+      </div>
+    </article>
+    <article class="dcard">
+      <img class="ph" src="https://theworldtravelguy.com/wp-content/uploads/2021/02/DJI_0362.jpg" alt="Pura Uluwatu di tepi laut" loading="lazy">
+      <div class="shade"></div>
+      <div class="info">
+        <h3>Pura Uluwatu</h3>
+        <div class="area"><svg viewBox="0 0 24 24"><path d="M12 21s-6.5-5.4-6.5-10.4a6.5 6.5 0 1 1 13 0C18.5 15.6 12 21 12 21z"/></svg><span>Uluwatu</span></div>
+        <p class="desc">Pura kuno di puncak tebing tinggi dengan tari kecak dan panorama laut saat senja.</p>
+      </div>
+    </article>
+    <article class="dcard">
+      <img class="ph" src="https://images.secretescapes.io/t/26/be/26bef8ac19b2da7ca7fc7852855b3984?auto=compress%2Cformat&crop=faces%2Cedges%2Ccenter&fit=crop&h=720&w=1080" alt="Sawah terasering Tegallalang" loading="lazy">
+      <div class="shade"></div>
+      <div class="info">
+        <h3>Sawah Tegallalang</h3>
+        <div class="area"><svg viewBox="0 0 24 24"><path d="M12 21s-6.5-5.4-6.5-10.4a6.5 6.5 0 1 1 13 0C18.5 15.6 12 21 12 21z"/></svg><span>Ubud</span></div>
+        <p class="desc">Terasering sawah hijau berundak yang ikonis, sejuk dan tenang di utara Ubud.</p>
+      </div>
+    </article>
+    <article class="dcard">
+      <img class="ph" src="https://tripsbali.com/wp-content/uploads/2025/02/bali-handara-gate.jpg" alt="Gerbang Handara di Bedugul" loading="lazy">
+      <div class="shade"></div>
+      <div class="info">
+        <h3>Gerbang Handara</h3>
+        <div class="area"><svg viewBox="0 0 24 24"><path d="M12 21s-6.5-5.4-6.5-10.4a6.5 6.5 0 1 1 13 0C18.5 15.6 12 21 12 21z"/></svg><span>Bedugul</span></div>
+        <p class="desc">Gerbang candi bentar yang megah berlatar pegunungan hijau yang sering berkabut.</p>
+      </div>
+    </article>
+    <article class="dcard">
+      <img class="ph" src="https://villaamrita.com/wp-content/uploads/2026/06/bali-things-beach-ocean.jpg" alt="Pantai Bali dengan perahu tradisional jukung" loading="lazy">
+      <div class="shade"></div>
+      <div class="info">
+        <h3>Pantai &amp; Jukung</h3>
+        <div class="area"><svg viewBox="0 0 24 24"><path d="M12 21s-6.5-5.4-6.5-10.4a6.5 6.5 0 1 1 13 0C18.5 15.6 12 21 12 21z"/></svg><span>Sanur</span></div>
+        <p class="desc">Pantai berair tenang untuk menyambut matahari terbit bersama perahu nelayan tradisional.</p>
+      </div>
+    </article>
+    <article class="dcard">
+      <img class="ph" src="https://pix3.agoda.net/hotelimages/48032429/0/c9a6f22f8653a94ef43fe1d321584f08.jpg" alt="Vila tropis Bali menghadap sawah" loading="lazy">
+      <div class="shade"></div>
+      <div class="info">
+        <h3>Vila &amp; Sawah</h3>
+        <div class="area"><svg viewBox="0 0 24 24"><path d="M12 21s-6.5-5.4-6.5-10.4a6.5 6.5 0 1 1 13 0C18.5 15.6 12 21 12 21z"/></svg><span>Ubud</span></div>
+        <p class="desc">Vila tropis dengan kolam pribadi yang menghadap langsung ke hamparan sawah.</p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer id="footer">
+  <a class="logo" href="#" id="fHome">Bali Travel</a>
+  <nav class="f-links">
+    <a href="#stays" id="fStays">Penginapan</a>
+    <a href="#jelajahi" id="fJelajahi">Jelajahi Bali</a>
+    <a href="#kontak" id="fKontak">Hubungi Kami</a>
+  </nav>
+  <p class="f-copy">© 2026 Bali Travel</p>
+</footer>
+
 <!-- ================= DETAIL ================= -->
 <section id="detail" aria-hidden="true">
   <div class="band"></div>
@@ -527,6 +666,62 @@ body.loaded #search{animation:searchIn 1s var(--out) .15s forwards}
     <div class="similar rise" style="--i:8">
       <h3>Penginapan Serupa</h3>
       <div id="simGrid"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= KONTAK ================= -->
+<section id="kontak" aria-hidden="true">
+  <div class="band"></div>
+  <div class="k-wrap">
+    <nav class="crumb rise" style="--i:0">
+      <a class="home" href="#" id="kontakHome">Beranda</a><span>›</span><span class="last">Hubungi Kami</span>
+    </nav>
+    <h1 class="k-title rise" style="--i:1">Hubungi Kami</h1>
+    <p class="k-intro rise" style="--i:2">Punya pertanyaan soal penginapan, destinasi, atau rencana liburan Anda di Bali? Tim kami siap membantu merencanakan perjalanan terbaik untuk Anda dan keluarga.</p>
+    <div class="k-cards">
+      <div class="k-card rise" style="--i:3">
+        <svg viewBox="0 0 24 24"><rect x="3" y="5.5" width="18" height="13" rx="2.5"/><path d="M3.8 7.4 12 13l8.2-5.6"/></svg>
+        <h3>Email</h3>
+        <p>halo@balitravel.id<br>Dibalas dalam 1×24 jam kerja.</p>
+      </div>
+      <div class="k-card rise" style="--i:4">
+        <svg viewBox="0 0 24 24"><path d="M5.2 3.8h3.4l1.6 4.3-2.3 1.7a12.5 12.5 0 0 0 6.3 6.3l1.7-2.3 4.3 1.6v3.4a2 2 0 0 1-2.1 2A16.8 16.8 0 0 1 3.2 5.9a2 2 0 0 1 2-2.1z"/></svg>
+        <h3>Telepon &amp; WhatsApp</h3>
+        <p>(0361) 555 0123<br>Juga melayani pemesanan langsung.</p>
+      </div>
+      <div class="k-card rise" style="--i:5">
+        <svg viewBox="0 0 24 24"><path d="M12 21s-6.5-5.4-6.5-10.4a6.5 6.5 0 1 1 13 0C18.5 15.6 12 21 12 21z"/><circle cx="12" cy="10.4" r="2.3"/></svg>
+        <h3>Kantor</h3>
+        <p>Jl. Pantai Berawa No. 88,<br>Canggu, Bali 80361</p>
+      </div>
+    </div>
+    <p class="k-hours rise" style="--i:6">Jam operasional: Senin–Sabtu, pukul 08.00–20.00 WITA.</p>
+
+    <form class="k-form rise" style="--i:7" id="kontakForm" novalidate>
+      <h3 class="k-form-title">Kirim Pesan</h3>
+      <div class="k-field">
+        <label for="kfNama">Nama</label>
+        <input id="kfNama" type="text" placeholder="Nama Anda" autocomplete="name">
+      </div>
+      <div class="k-field">
+        <label for="kfEmail">Email</label>
+        <input id="kfEmail" type="email" placeholder="nama@email.com" autocomplete="email">
+      </div>
+      <div class="k-field">
+        <label for="kfPesan">Pesan</label>
+        <textarea id="kfPesan" rows="5" placeholder="Tulis pesan Anda di sini…"></textarea>
+      </div>
+      <p class="k-err" id="kfErr" role="alert"></p>
+      <button type="submit" id="kfBtn">Kirim Pesan</button>
+    </form>
+
+    <div class="host-block rise" style="--i:8" id="hostBlock">
+      <div>
+        <h3>Punya vila atau penginapan di Bali?</h3>
+        <p>Bergabunglah sebagai host Bali Travel dan tawarkan penginapan Anda kepada wisatawan dari seluruh dunia.</p>
+      </div>
+      <button id="hostBtn" type="button">Daftar Jadi Host</button>
     </div>
   </div>
 </section>
@@ -616,6 +811,28 @@ setTitle('#title1',[['SELAMAT','DATANG','DI','BALI']]);
 setTitle('#title2',[['TEMUKAN','PENGINAPAN']]);
 setTitle('#title3',[['JELAJAHI'],['BALI']]);
 
+/* ================= TITLE FIT =================
+   Judul satu baris (slide 1 & 2) memakai nowrap pada 8.25vw; judul yang
+   lebih lebar dari 80% viewport akan tertutup rel thumbnail di kanan,
+   jadi kecilkan ukuran huruf secara proporsional sampai pas. */
+function fitTitles(){
+  const vw=window.innerWidth;
+  ['#title1','#title2','#title3'].forEach(sel=>{
+    const el=$(sel);
+    el.style.fontSize='';
+    if(vw<=640)return; /* di layar kecil CSS membungkus judul pada 80vw */
+    const avail=vw*.80, w=el.scrollWidth;
+    if(w>avail){
+      const base=parseFloat(getComputedStyle(el).fontSize);
+      el.style.fontSize=(base*avail/w).toFixed(2)+'px';
+    }
+  });
+}
+fitTitles();
+if(document.fonts&&document.fonts.ready)document.fonts.ready.then(()=>fitTitles());
+let fitTimer=null;
+window.addEventListener('resize',()=>{clearTimeout(fitTimer);fitTimer=setTimeout(fitTitles,150)});
+
 /* ================= RAIL ================= */
 const rail=$('#rail'), thumbs=$$('.thumb'), hero=$('#hero');
 let cur=0, activeCenterY=0;
@@ -698,10 +915,10 @@ scheduleAuto();
 
 /* ================= SCROLL FX + NAV ================= */
 const nav=$('#nav'), slideStack=$('#slideStack'), cloudsBottom=$('#cloudsBottom'), cloudsTop=$('#cloudsTop');
-let detailOpen=false, ticking=false;
+let detailOpen=false, kontakOpen=false, ticking=false;
 function onScroll(){
   const sy=window.scrollY, vh=window.innerHeight;
-  nav.classList.toggle('solid',sy>vh*.3||detailOpen);
+  nav.classList.toggle('solid',sy>vh*.3||detailOpen||kontakOpen);
   if(sy<vh*1.3){
     slideStack.style.transform=`translateY(${sy*.42}px)`;
     cloudsBottom.style.transform=`translateY(${-sy*.38}px) scale(${1+.35*sy/vh})`;
@@ -834,9 +1051,8 @@ function closeDetail(){
   detail.classList.remove('open'); detail.setAttribute('aria-hidden','true');
   detailOpen=false; document.body.style.overflow=''; onScroll();
 }
-$('#logoHome').addEventListener('click',e=>{e.preventDefault();if(detailOpen)closeDetail();window.scrollTo({top:0,behavior:'smooth'})});
+$('#logoHome').addEventListener('click',e=>{e.preventDefault();if(detailOpen)closeDetail();if(kontakOpen)closeKontak();window.scrollTo({top:0,behavior:'smooth'})});
 $('#crumbHome').addEventListener('click',e=>{e.preventDefault();closeDetail()});
-$$('.nav-mid a').forEach(a=>a.addEventListener('click',()=>{if(detailOpen)closeDetail()}));
 $('#dHeart').addEventListener('click',()=>{
   if(detailIdx===null)return;
   if(favs.has(detailIdx))favs.delete(detailIdx);else favs.add(detailIdx);
@@ -852,6 +1068,64 @@ $('#bookBtn').addEventListener('click',()=>{
   if(!bb.classList.contains('done')){bb.classList.add('done');bb.textContent='Dipesan ✓'}
 });
 syncBgBtns();
+
+/* ================= KONTAK (HUBUNGI KAMI) ================= */
+const kontak=$('#kontak');
+function openKontak(toHost){
+  if(detailOpen)closeDetail();
+  kontak.classList.add('open'); kontak.setAttribute('aria-hidden','false');
+  kontakOpen=true; document.body.style.overflow='hidden'; kontak.scrollTop=0; onScroll();
+  if(toHost)setTimeout(()=>{const hb=$('#hostBlock');if(hb)hb.scrollIntoView({behavior:'smooth',block:'center'})},140);
+}
+function closeKontak(){
+  kontak.classList.remove('open'); kontak.setAttribute('aria-hidden','true');
+  kontakOpen=false; document.body.style.overflow=''; onScroll();
+}
+function closeOverlays(){if(detailOpen)closeDetail();if(kontakOpen)closeKontak()}
+$('#kontakHome').addEventListener('click',e=>{e.preventDefault();closeKontak()});
+document.addEventListener('keydown',e=>{
+  if(e.key!=='Escape')return;
+  if(kontakOpen)closeKontak();
+  else if(detailOpen)closeDetail();
+});
+
+/* ================= NAVIGASI: NAV + FOOTER ================= */
+function goSection(sel){closeOverlays();const t=$(sel);if(t)t.scrollIntoView({behavior:'smooth'})}
+function wireNav(el,fn){if(el)el.addEventListener('click',e=>{e.preventDefault();fn()})}
+wireNav($('#navStays'),()=>goSection('#stays'));
+wireNav($('#navJelajahi'),()=>goSection('#jelajahi'));
+wireNav($('#navKontak'),()=>openKontak(false));
+wireNav($('#navHost'),()=>openKontak(true));
+wireNav($('#fStays'),()=>goSection('#stays'));
+wireNav($('#fJelajahi'),()=>goSection('#jelajahi'));
+wireNav($('#fKontak'),()=>openKontak(false));
+wireNav($('#fHome'),()=>{closeOverlays();window.scrollTo({top:0,behavior:'smooth'})});
+
+/* ================= FORMULIR KONTAK ================= */
+const kForm=$('#kontakForm'), kErr=$('#kfErr'), kBtn=$('#kfBtn');
+let kTimer=null;
+function kShowErr(msg){kErr.textContent=msg;kErr.classList.add('show')}
+function kHideErr(){kErr.textContent='';kErr.classList.remove('show')}
+kForm.addEventListener('submit',e=>{
+  e.preventDefault();
+  const nama=$('#kfNama').value.trim(), email=$('#kfEmail').value.trim(), pesan=$('#kfPesan').value.trim();
+  if(!nama){kShowErr('Mohon isi nama Anda terlebih dahulu.');$('#kfNama').focus();return}
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){kShowErr('Mohon isi alamat email yang valid, contoh: nama@email.com.');$('#kfEmail').focus();return}
+  if(!pesan){kShowErr('Mohon tulis pesan Anda terlebih dahulu.');$('#kfPesan').focus();return}
+  kHideErr();
+  kBtn.classList.add('done'); kBtn.textContent='Pesan Terkirim ✓'; kBtn.disabled=true;
+  clearTimeout(kTimer);
+  kTimer=setTimeout(()=>{kForm.reset();kBtn.classList.remove('done');kBtn.textContent='Kirim Pesan';kBtn.disabled=false},3500);
+});
+$('#hostBtn').addEventListener('click',()=>{
+  const ta=$('#kfPesan');
+  if(!ta.value.trim())ta.value='Saya ingin menjadi host.';
+  kForm.scrollIntoView({behavior:'smooth',block:'center'});
+  setTimeout(()=>$('#kfNama').focus({preventScroll:true}),500);
+});
+
+/* kartu destinasi Jelajahi Bali ikut animasi muncul saat terlihat */
+$$('.dcard').forEach((c,i)=>{c.style.transitionDelay=((i%3)*90)+'ms';io.observe(c)});
 </script>
 </body>
 </html>
